@@ -38,3 +38,9 @@ model.compile(
     loss = 'binary_crossentropy',
     metrics=['binary_accuracy'],
 )
+
+history = model.fit(
+    ds_train,
+    validation_data=ds_valid,
+    epochs=30,
+)
