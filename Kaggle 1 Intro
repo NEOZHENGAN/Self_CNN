@@ -21,3 +21,20 @@ model = keras.Sequential([
     ])
 
 3)Train
+1️⃣ Optimizer = 'adam'
+--Adam is like a smart teacher: it adjusts how fast or slow the network should learn.
+Faster convergence and works well in almost all problems.
+2️⃣ Loss = 'binary_crossentropy'
+The network predicts a number between 0 and 1 (probability of Truck).
+The loss measures how far this prediction is from the true label (0 or 1).
+Smaller loss = network is doing better.
+3️⃣ Metrics = ['binary_accuracy']
+Tells us how often the model predicts correctly.
+For example: 0.85 = 85% correct predictions.--
+
+optimizer = tf.keras.optimizers.Adam(epsilon=0.01)
+model.compile(
+    optimizer=optimizer,
+    loss = 'binary_crossentropy',
+    metrics=['binary_accuracy'],
+)
