@@ -39,6 +39,21 @@ model.compile(
     metrics=['binary_accuracy'],
 )
 
+1️⃣ ds_train (training dataset)
+Contains images + labels
+Model looks at each image: “Car or Truck?”
+Compares prediction with correct label → calculates loss
+Updates weights using optimizer to improve
+Think: “Student practices exercises, learns from mistakes.”
+2️⃣ validation_data=ds_valid (validation dataset)
+Model does not learn from this dataset
+Only checks how well it predicts unseen images
+Helps detect overfitting → model memorizing training data but failing new data
+Think: “Student takes a mini test to see if they actually learned.”
+3️⃣ epochs=30
+1 epoch = model sees all training images once
+30 epochs = model sees all images 30 times
+
 history = model.fit(
     ds_train,
     validation_data=ds_valid,
