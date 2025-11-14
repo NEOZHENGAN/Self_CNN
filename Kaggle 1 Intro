@@ -59,3 +59,13 @@ history = model.fit(
     validation_data=ds_valid,
     epochs=30,
 )
+
+4) Examine Loss and Accuracy
+--Do you notice a difference between these learning curves and the curves for VGG16 from the tutorial? 
+What does this difference tell you about what this model (InceptionV2) learned compared to VGG16? Are there ways in which one is better than the other? Worse?--
+| Case                          | Training Loss | Validation Loss | What it means                                          |
+| ----------------------------- | ------------- | --------------- | ------------------------------------------------------ |
+| Both low                      | Low           | Low             | Model is learning well and generalizing ✅              |
+| Training low, Validation high | Low           | High            | Model is **overfitting** (memorizing training data) ⚠️ |
+| Both high                     | High          | High            | Model is **underfitting** (not learning enough) ⚠️     |
+
