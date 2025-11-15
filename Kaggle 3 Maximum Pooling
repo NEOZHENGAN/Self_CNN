@@ -20,4 +20,5 @@ image_condense=tf.nn.pool(
   padding = 'SAME', //➡️This means TensorFlow will add padding (extra zeros) if needed so the output size stays clean.
 )
 
-2)
+2) Translation Invariable
+
