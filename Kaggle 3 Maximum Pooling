@@ -1,0 +1,21 @@
+1) Apply Pooling to Condense
+For for the last step in the sequence, apply maximum pooling using a 
+ pooling window. You can copy this code to get started:
+
+--image_condense = tf.nn.pool(
+    input=image_detect,
+    window_shape=____,
+    pooling_type=____,
+    strides=(2, 2),
+    padding='SAME',
+)--
+
+image_condense=tf.nn.pool(
+  input = image_detect, //➡️is the feature map after relu
+  window_shape  = [2,2], //➡️sliding box
+  pooling_type = 'MAX', //➡️take max value in each window
+  strides = (2,2), //➡️ Move 2 pixels right ; Move 2 pixels down
+  padding = 'SAME', //➡️This means TensorFlow will add padding (extra zeros) if needed so the output size stays clean.
+)
+
+2)
