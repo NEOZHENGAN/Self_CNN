@@ -1,3 +1,5 @@
+🔍 Max Pooling is a stage after 'relu' to reduce the size of feature maps by using window only take the larges value in the window to combine it to make it a new feature map but smaller🔍
+
 1) Apply Pooling to Condense
 For for the last step in the sequence, apply maximum pooling using a 
  pooling window. You can copy this code to get started:
