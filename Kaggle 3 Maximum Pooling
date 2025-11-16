@@ -21,4 +21,29 @@ image_condense=tf.nn.pool(
 )
 
 2) Translation Invariable
+--we would expect small shifts to disappear after repeated maximum pooling. 
+If you run the cell multiple times, you can see the resulting image is always the same; the pooling operation destroys those small translations.--
+
+is ignoring the part unuseful like 0 
+
+3)Global Average Pooling
+A GlobalAvgPool2D layer is often used as an alternative to some or all of the hidden Dense layers in the head of the network, like so:
+
+model = keras.Sequential([
+    pretrained_base,
+    layers.GlobalAvgPool2D(),
+    layers.Dense(1, activation='sigmoid'),
+])
+
+------------------------------------------------
+
+instead like this:
+Flatten() → Dense(2048) → Dense(1024) → Dense(num_classes)
+GlobalAvgPool2D:
+GlobalAvgPool2D() → Dense(num_classes)
+GlobalAvgPool2D = Take average of each feature map to reduce size.
+
+➡️Used to make CNN models smaller, faster, and good for mobile apps (Flutter TFLite).
+(2 + 4 + 6 + 3 + 5 + 7 + 1 + 2 + 3) / 9 = 3.67
+In my words it only take the average instead of flatten all the neuron into 1D so much faster!
 
