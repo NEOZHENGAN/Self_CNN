@@ -1,0 +1,35 @@
+1)The Receptive Field
+--race back all the connections from some neuron and eventually you reach the input image. 
+All of the input pixels a neuron is connected to is that neuron's receptive field. 
+The receptive field just tells you which parts of the input image a neuron receives information from.--
+
+✅is like 3*3 then go to 5*5 because at the each feature map the secondlayer the center of it will go through more pixels!!
+
+2)(Optional) One-Dimensional Convolution
+--
+n fact, the detrend kernel filters for changes in the series,
+while average and spencer are both "smoothers" that filter for low-frequency components in the series
+--
+
+# UNCOMMENT ONE
+kernel = detrend
+# kernel = average
+# kernel = spencer
+
+# Reformat for TensorFlow
+ts_data = machinelearning.to_numpy()
+ts_data = tf.expand_dims(ts_data, axis=0)
+ts_data = tf.cast(ts_data, dtype=tf.float32)
+kern = tf.reshape(kernel, shape=(*kernel.shape, 1, 1))
+
+ts_filter = tf.nn.conv1d(
+    input=ts_data,
+    filters=kern,
+    stride=1,
+    padding='VALID',
+)
+
+# Format as Pandas Series
+machinelearning_filtered = pd.Series(tf.squeeze(ts_filter).numpy())
+
+machinelearning_filtered.plot();
