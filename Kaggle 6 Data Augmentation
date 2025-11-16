@@ -1,0 +1,57 @@
+1)Introduction
+This course learns about we can actually to train our model using fake data which is we modify a bit an image to create around 50 maybe fake data to train CV
+Hence, we not need so much of dataset to train our CV
+Got -- two option to create dataset
+
+2) Add Preprocessing Layers
+--Add these preprocessing layers to the given model.
+
+preprocessing.RandomContrast(factor=0.10),
+preprocessing.RandomFlip(mode='horizontal'),
+preprocessing.RandomRotation(factor=0.10),--
+---------------------------------------------------------------------------------------------------
+from tensorflow import keras
+from tensorflow.keras import layers
+
+model = keras.Sequential([
+    layers.InputLayer(input_shape=[128, 128, 3]),
+ # Data Augmentation
+    preprocessing.RandomContrast(factor=0.10),
+    preprocessing.RandomFlip(mode='horizontal'),
+    preprocessing.RandomRotation(factor=0.10),
+    # ____,
+
+    # Block One
+    layers.BatchNormalization(renorm=True),
+    layers.Conv2D(filters=64, kernel_size=3, activation='relu', padding='same'),
+    layers.MaxPool2D(),
+
+    # Block Two
+    layers.BatchNormalization(renorm=True),
+    layers.Conv2D(filters=128, kernel_size=3, activation='relu', padding='same'),
+    layers.MaxPool2D(),
+
+    # Block Three
+    layers.BatchNormalization(renorm=True),
+    layers.Conv2D(filters=256, kernel_size=3, activation='relu', padding='same'),
+    layers.Conv2D(filters=256, kernel_size=3, activation='relu', padding='same'),
+    layers.MaxPool2D(),
+
+    # Head
+    layers.BatchNormalization(renorm=True),
+    layers.Flatten(),
+    layers.Dense(8, activation='relu'),
+    layers.Dense(1, activation='sigmoid'),
+])
+
+3) Train Model
+--The learning curves in this model stayed close together for much longer than in previous models. 
+This suggests that the augmentation helped prevent overfitting, allowing the model to continue improving.
+And notice that this model achieved the highest accuracy of all the models in the course! 
+This won't always be the case, but it shows that a well-designed custom convnet can sometimes perform as well or better than a much larger pretrained model.
+Depending on your application, having a smaller model (which requires fewer resources) could be a big advantage.--
+
+In my words, the AI is not memorising the data when training so that the loss of training is so close with the validation already mean it really working  to train 
+it✅
+So we have to make sure that can let AI to train fakely can use like dropout to let some neuron not to convul this time and divide them to train for differient 
+situation!!!
